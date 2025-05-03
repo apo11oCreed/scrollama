@@ -1,23 +1,9 @@
+<script>
+    import { Graphic, Text } from '$lib';
+</script>
 <section id="scroll">
-    <div class="scroll__graphic">
-        <div class="chart">
-            <p>0</p>
-        </div>
-    </div>
-    <div class="scroll__text">
-        <div class="step" data-step='1'>
-            <p>STEP 1</p>
-        </div>
-        <div class="step" data-step='2'>
-            <p>STEP 2</p>
-        </div>
-        <div class="step" data-step='3'>
-            <p>STEP 3</p>
-        </div>
-        <div class="step" data-step='4'>
-            <p>STEP 4</p>
-        </div>
-    </div>
+    <Graphic />
+    <Text />
 </section>
 <style lang="stylus">
 </style>
