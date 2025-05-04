@@ -7,3 +7,6 @@
     <Step step='3' />
     <Step step='4' />
 </div>
+<style lang="stylus">
+    
+</style>
