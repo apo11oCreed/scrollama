@@ -1,14 +1,12 @@
 <script>
     import { Graphic, Text } from '$lib';
     import * as d3 from 'd3';
-    import scrollama from 'scrollama';
     import { onMount } from 'svelte';
     // using d3 for convenience, and storing a selected elements
     
     let scroller;
     
-    onMount(()=>{
-        const scrollama = (await import('scrollama')).default;
+    onMount(async()=>{
         const _container = d3.select('#scroll');
         const _graphic = _container.select('.scroll__graphic');
         const _chart = _graphic.select('.chart');
@@ -17,6 +15,8 @@
         
         // initialize the scrollama
         scroller = scrollama();
+
+        init();
         
     });
     
@@ -52,10 +52,9 @@
     
     	// setup resize event
     	window.addEventListener('resize', handleResize);
+
+        // start it up
     }
-    
-    // start it up
-    init();
     
 </script>
 <section id="scroll">
