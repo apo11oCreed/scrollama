@@ -21,7 +21,27 @@
     });
     
     // resize function to set dimensions on load and on page resize
-    function handleResize() {}
+    function handleResize() {
+        const stepHeight = Math.floor(window.innerHeight * 0.75);
+        _step.style('height', stepHeight + 'px');
+        
+        const bodyWidth = d3.select('body').node().offsetWidth;
+        
+        _graphic
+            .style('height', window.innerHeight + 'px');
+            
+        const chartMargin = 32;
+        const textWidth = _text.node().offsetWidth;
+        const chartWidth = _graphic.node().offsetWidth - textWidth - chartMargin;
+        
+        const chartHeight = Math.floor(window.innerHeight / 2);
+        
+        _chart
+            .style('width', chartWidth + 'px')
+            .style('height', chartHeight + 'px');
+            
+        scroller.resize();
+    }
     
     // scrollama event handlers
     function handleStepEnter(response) {}
