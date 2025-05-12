@@ -8,5 +8,7 @@
     <Step step='4' />
 </div>
 <style lang="stylus">
-    
+    .scroll__text
+        padding 0 1rem
+        max-width 30rem
 </style>
