@@ -1,17 +1,26 @@
-<script>
+<script lang="ts">
     import { Graphic, Text } from '$lib';
     import * as d3 from 'd3';
     import { onMount } from 'svelte';
     // using d3 for convenience, and storing a selected elements
     
-    let scroller;
+    //console.log(scrollama);
+    let scroller,
+    _container,
+    _graphic,
+    _chart,
+    _text,
+    _step;
     
     onMount(async()=>{
-        const _container = d3.select('#scroll');
-        const _graphic = _container.select('.scroll__graphic');
-        const _chart = _graphic.select('.chart');
-        const _text = _container.select('.scroll__text');
-        const _step = _text.selectAll('.step');
+        
+        const module = await import('https://unpkg.com/scrollama');
+        
+        _container = d3.select('#scroll');
+        _graphic = _container.select('.scroll__graphic');
+        _chart = _graphic.select('.chart');
+        _text = _container.select('.scroll__text');
+        _step = _text.selectAll('.step');
         
         // initialize the scrollama
         scroller = scrollama();
@@ -44,11 +53,25 @@
     }
     
     // scrollama event handlers
-    function handleStepEnter(response) {}
+    function handleStepEnter(response) {
+        
+        _step.classed('is-active',function(d,i){
+            return i === response.index;
+        });
+        
+        const stepData = _step.attr('data-step');
+        _chart.html(`<p>${response.index + 1}</p>`);
+    }
     
-    function handleContainerEnter(response) {}
+    function handleContainerEnter(response) {
+        _graphic.classed('is-fixed', true);
+        _graphic.classed('is-bottom', false);
+    }
     
-    function handleContainerExit(response) {}
+    function handleContainerExit(response) {
+        _graphic.classed('is-fixed', false);
+        _graphic.classed('is-bottom', response.direction === 'down');
+    }
     
     // kick-off code to run once on load
     function init() {
@@ -64,11 +87,12 @@
     			text: '.scroll__text', // the step container
     			step: '.scroll__text .step', // the step elements
     			offset: 0.5, // set the trigger to be 1/2 way down screen
-    			debug: true, // display the trigger offset for testing
+    			debug: false, // display the trigger offset for testing
     		})
-    		.onStepEnter(handleStepEnter)
-    		.onContainerEnter(handleContainerEnter)
-    		.onContainerExit(handleContainerExit);
+    		.onStepEnter(handleStepEnter);
+    		
+		_container.node().addEventListener('mouseenter', handleContainerEnter);
+		_container.node().addEventListener('mouseleave', handleContainerExit);
     
     	// setup resize event
     	window.addEventListener('resize', handleResize);
