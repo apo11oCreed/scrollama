@@ -5,7 +5,7 @@
     <p>STEP {step}</p>
 </div>
 <style lang="stylus">
-    .step
-        opacity 0
-        padding 1rem
+.step
+    opacity 0
+    padding 1rem
 </style>

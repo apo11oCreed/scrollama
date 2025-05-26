@@ -1,11 +1,13 @@
-@layer base, component
+.bg-gray
+    background-color #c9c9c9
+    padding 1rem
+    
+.scroll__graphic.is-fixed
+    position sticky!important
 
-@layer component
-    .scroll__graphic.is-fixed
-	position fixed
-
-    .scroll__graphic.is-bottom
-    	bottom 0
-    	top auto
-    .step.is-active
-        opacity 1
+.scroll__graphic.is-bottom
+	bottom 0!important
+	top auto!important
+	
+.step.is-active
+    opacity 1!important
