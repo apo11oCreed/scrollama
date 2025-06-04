@@ -5,7 +5,6 @@
 </div>
 <style lang="stylus">
 .scroll__graphic
-	position absolute
 	top 0
 	left 0
 	bottom auto
