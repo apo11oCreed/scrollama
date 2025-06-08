@@ -31,7 +31,8 @@
     
     // resize function to set dimensions on load and on page resize
     function handleResize() {
-        const stepHeight = Math.floor(window.innerHeight * 0.75);
+        // const stepHeight = Math.floor(window.innerHeight * 0.75);
+        const stepHeight = Math.floor(window.innerHeight );
         _step.style('height', stepHeight + 'px');
         
         const bodyWidth = d3.select('body').node().offsetWidth;
@@ -43,7 +44,8 @@
         const textWidth = _text.node().offsetWidth;
         const chartWidth = _graphic.node().offsetWidth - textWidth - chartMargin;
         
-        const chartHeight = Math.floor(window.innerHeight / 2);
+        // const chartHeight = Math.floor(window.innerHeight / 2);
+        const chartHeight = Math.floor(window.innerHeight);
         
         _chart
             .style('width', chartWidth + 'px')
@@ -102,7 +104,11 @@
     
 </script>
 <section id="scroll">
-    <Graphic />
+    <Graphic id="1" />
+    <!-- <Graphic id="2" />
+    <Graphic id="3" />
+    <Graphic id="4" />
+    <Graphic id="5" /> -->
     <Text />
 </section>
 <style lang="stylus">
