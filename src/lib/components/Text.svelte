@@ -10,5 +10,5 @@
 <style lang="stylus">
     .scroll__text
         padding 0 1rem
-        max-width 30rem
+        max-width none
 </style>

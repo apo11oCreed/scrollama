@@ -70,7 +70,7 @@
     
     function handleContainerExit(response) {
         _graphic.classed('is-fixed', false);
-        _graphic.classed('is-bottom', response.direction === 'down');
+        _graphic.classed('is-bottom', true);
     }
     
     // kick-off code to run once on load
@@ -86,8 +86,8 @@
     			graphic: '.scroll__graphic', // the graphic
     			text: '.scroll__text', // the step container
     			step: '.scroll__text .step', // the step elements
-    			offset: 0.5, // set the trigger to be 1/2 way down screen
-    			debug: false, // display the trigger offset for testing
+    			offset: 0.75, // set the trigger to be 1/2 way down screen
+    			debug: true, // display the trigger offset for testing
     		})
     		.onStepEnter(handleStepEnter);
     		

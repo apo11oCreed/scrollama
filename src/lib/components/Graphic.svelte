@@ -12,6 +12,8 @@
 	-webkit-transform translate3d(0, 0, 0)
 	-moz-transform translate3d(0, 0, 0)
 	transform translate3d(0, 0, 0)
+	z-index 1
+	position sticky
 	
 .scroll__graphic .chart
 	position absolute
