@@ -16,7 +16,7 @@
         
         const module = await import('https://unpkg.com/scrollama');
         
-        _container = d3.select('#scroll');
+        _container = d3.selectAll('.scroll');
         _graphic = _container.select('.scroll__graphic');
         _chart = _graphic.select('.chart');
         _text = _container.select('.scroll__text');
@@ -88,7 +88,7 @@
     			graphic: '.scroll__graphic', // the graphic
     			text: '.scroll__text', // the step container
     			step: '.scroll__text .step', // the step elements
-    			offset: 0.75, // set the trigger to be 1/2 way down screen
+    			offset: 0.5, // set the trigger to be 1/2 way down screen
     			debug: true, // display the trigger offset for testing
     		})
     		.onStepEnter(handleStepEnter);
@@ -103,8 +103,16 @@
     }
     
 </script>
-<section id="scroll">
+<section class="scroll">
     <Graphic id="1" />
+    <!-- <Graphic id="2" />
+    <Graphic id="3" />
+    <Graphic id="4" />
+    <Graphic id="5" /> -->
+    <Text />
+</section>
+<section class="scroll">
+    <Graphic id="2" />
     <!-- <Graphic id="2" />
     <Graphic id="3" />
     <Graphic id="4" />
