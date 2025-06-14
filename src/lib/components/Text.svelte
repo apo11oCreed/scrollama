@@ -9,9 +9,10 @@
     <Step step='4' content='This is step 4 heading' tag='h2'  />
 </div>
 <style lang="stylus">
-    .scroll__text
-        position relative
-        padding 0 1rem
-        max-width none
-        z-index 1
+.scroll__text
+    position relative
+    padding 0 1rem
+    margin auto
+    text-align center
+    z-index 1
 </style>
