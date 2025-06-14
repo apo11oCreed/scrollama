@@ -1,7 +1,11 @@
+<script lang="ts">
+	let { id } = $props();
+</script>
 <div class='scroll__graphic'>
-	<div class='chart'>
-		<p>0</p>
-	</div>
+	<!--<div class='chart'>-->
+	<!--	<p>0</p>-->
+	<!--</div>-->
+	<img src="https://picsum.photos/id/{id}/1200/900" />
 </div>
 <style lang="stylus">
 .scroll__graphic
@@ -28,5 +32,9 @@
 	width 100%
 	height 100%
 	overflow hidden
+	img
+		width 100%
+		height auto
+		
 	
 </style>

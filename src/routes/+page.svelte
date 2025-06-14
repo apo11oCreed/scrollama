@@ -120,7 +120,7 @@
     <Text />
 </section>
 <style lang="stylus">
-#scroll
+.scroll
     position relative
 </style>
 <!--https://pudding.cool/process/introducing-scrollama/-->
