@@ -1,11 +1,17 @@
 <script lang="ts">
-	let { id } = $props();
+	let { id, type } = $props();
 </script>
 <div class='scroll__graphic'>
 	<!--<div class='chart'>-->
 	<!--	<p>0</p>-->
 	<!--</div>-->
+	{#if type=="image"}
 	<img src="https://picsum.photos/id/{id}/1200/900" />
+	{:else}
+	<video loop="true" height="1200" width="900" preload="true" autoplay="true" playsinline="true" muted="false">
+		<source src="https://clientcenter-env-eba-uhva3sx9-us-east-1-elasticbeanstalk-com.s3.us-east-1.amazonaws.com/test-video/windows-google-search.mp4" type="video/mp4" />-
+	</video>
+	{/if}
 </div>
 <style lang="stylus">
 .scroll__graphic

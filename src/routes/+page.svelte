@@ -104,7 +104,7 @@
     
 </script>
 <section class="scroll">
-    <Graphic id="1" />
+    <Graphic id="1" type="video" />
     <!-- <Graphic id="2" />
     <Graphic id="3" />
     <Graphic id="4" />
@@ -112,7 +112,7 @@
     <Text />
 </section>
 <section class="scroll">
-    <Graphic id="2" />
+    <Graphic id="2" type="image" />
     <!-- <Graphic id="2" />
     <Graphic id="3" />
     <Graphic id="4" />

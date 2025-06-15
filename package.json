@@ -60,6 +60,7 @@
 		"d3": "^7.9.0",
 		"intersection-observer": "^0.12.2",
 		"scrollama": "^3.2.0",
-		"stylus": "^0.64.0"
+		"stylus": "^0.64.0",
+		"video.js": "^8.23.3"
 	}
 }
