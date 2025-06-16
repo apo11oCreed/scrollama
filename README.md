@@ -1,58 +1,35 @@
-# Svelte library
+# Scrollama scrollytelling experiments
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+This project is an exploration of scrollytelling with the use of the Scrollama library. As the visitor views each scroller section, the image and videos should be optimized to reduce performance degradations from their sizes.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Requirements
+* The first couple of scrollers' content should load on page view
+* The remaining scrollers' content should lazyload when the scroller step is near to view
+* The scrollers' video will be delivered via videojs
+* The scrollers' video content should be preloaded, paused and start playing only when the parent steps come into view
+* The scrollers' video content should play automatically across all device/browsers when the parent steps come into view
+* The scrollers' video content should be delivered as HSL for best performance but fallback to MP4 where not supported
 
-## Creating a project
+## Dependencies
+* Bun (global)
+* Vite
+* Sveltekit
+* Typescript
+* Stylus
+* Scrollama
+* FFMPEG (global)
+* AWS S3
+* VideoJS
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Notes
 
-```bash
-# create a new project in the current directory
-npx sv create
+### The following files require changes:
+node_modules/sirv/build.mjs
+`import { parse } from '@polka/url';`
+Should be changed to:
+`import { parse } from '@polka/url/build.mjs';`
 
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
-
-## Building
-
-To build your library:
-
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
-```
+node_modules/@polka/url/build.mjs
+`function parse(str) {`
+Should be changed to:
+`export function parse(str) {`
