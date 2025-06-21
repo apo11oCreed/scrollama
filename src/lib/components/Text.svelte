@@ -1,7 +1,6 @@
 <script>
     import { Step } from '$lib';
 </script>
-<!-- <div class="spacer" style="height: 100vh;"></div> -->
 <div class="scroll__text">
     <Step step='1' content='This is step 1 heading' tag='h2' />
     <Step step='2' content='This is step 2 with a paragraph tag. It is more detailed than a heading.' tag='p'  />

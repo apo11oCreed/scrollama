@@ -4,7 +4,6 @@
     import { onMount } from 'svelte';
     // using d3 for convenience, and storing a selected elements
     
-    //console.log(scrollama);
     let scroller,
     _container,
     _graphic,
@@ -31,25 +30,11 @@
     
     // resize function to set dimensions on load and on page resize
     function handleResize() {
-        // const stepHeight = Math.floor(window.innerHeight * 0.75);
+        
         const stepHeight = Math.floor(window.innerHeight );
         _step.style('height', stepHeight + 'px');
-        
-        const bodyWidth = d3.select('body').node().offsetWidth;
-        
         _graphic
             .style('height', window.innerHeight + 'px');
-            
-        const chartMargin = 32;
-        const textWidth = _text.node().offsetWidth;
-        const chartWidth = _graphic.node().offsetWidth - textWidth - chartMargin;
-        
-        // const chartHeight = Math.floor(window.innerHeight / 2);
-        const chartHeight = Math.floor(window.innerHeight);
-        
-        _chart
-            .style('width', chartWidth + 'px')
-            .style('height', chartHeight + 'px');
             
         scroller.resize();
     }
@@ -98,25 +83,16 @@
     
     	// setup resize event
     	window.addEventListener('resize', handleResize);
-
-        // start it up
+    
     }
     
 </script>
 <section class="scroll">
     <Graphic id="1" type="video" />
-    <!-- <Graphic id="2" />
-    <Graphic id="3" />
-    <Graphic id="4" />
-    <Graphic id="5" /> -->
     <Text />
 </section>
 <section class="scroll">
     <Graphic id="2" type="image" />
-    <!-- <Graphic id="2" />
-    <Graphic id="3" />
-    <Graphic id="4" />
-    <Graphic id="5" /> -->
     <Text />
 </section>
 <style lang="stylus">
