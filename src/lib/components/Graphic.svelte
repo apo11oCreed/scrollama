@@ -1,13 +1,49 @@
 <script lang="ts">
 	let { id, type } = $props();
+	import { onMount } from 'svelte';
+	import videojs from 'video.js';
+	import 'video.js/dist/video-js.css';
+	
+	let videoElement;
+	let player;
+	
+	const videoOptions={
+		controls: false,
+		autoplay: true,
+		playsinline: true,
+		muted: false,
+		loop: true,
+		height: 1200,
+		width: 900,
+		preload: true,
+		sources: [
+			{
+				src: 'https://clientcenter-env-eba-uhva3sx9-us-east-1-elasticbeanstalk-com.s3.us-east-1.amazonaws.com/test-video/windows-google-search.mp4',
+				type: 'video/mp4'
+			}
+		]
+	};
+	
+	onMount(()=>{
+		if(videoElement){
+			player = videojs(videoElement, videoOptions, ()=>{
+				console.log('player is ready');
+			});
+		}
+		
+		return ()=>{
+			if(player){
+				player.dispose();
+			}
+		};
+		
+	});
 </script>
 <div class='scroll__graphic'>
 	{#if type=="image"}
-	<img src="https://picsum.photos/id/{id}/1200/900" />
+	<img src="https://picsum.photos/id/{id}/1200/900" alt="test" />
 	{:else}
-	<video loop="true" height="1200" width="900" preload="true" autoplay="true" playsinline="true" muted="false">
-		<source src="https://clientcenter-env-eba-uhva3sx9-us-east-1-elasticbeanstalk-com.s3.us-east-1.amazonaws.com/test-video/windows-google-search.mp4" type="video/mp4" />-
-	</video>
+	<video bind:this={videoElement} class="video-test"></video>
 	{/if}
 </div>
 <style lang="stylus">
@@ -22,15 +58,10 @@
 	z-index 0
 	position sticky
 	
-.scroll__graphic .chart
-	position absolute
-	display flex
-	justify-content center
-	align-items center
-	width 100%
-	height 100%
-	overflow hidden
-	img
+.scroll__graphic
+	img,
+	video,
+	.video-test
 		width 100%
 		height auto
 		
