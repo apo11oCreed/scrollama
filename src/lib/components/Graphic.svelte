@@ -11,7 +11,7 @@
 		controls: false,
 		autoplay: true,
 		playsinline: true,
-		muted: false,
+		muted: true,
 		loop: true,
 		height: 1200,
 		width: 900,
@@ -43,7 +43,7 @@
 	{#if type=="image"}
 	<img src="https://picsum.photos/id/{id}/1200/900" alt="test" />
 	{:else}
-	<video bind:this={videoElement} class="video-test"></video>
+	<video bind:this={videoElement} class="video-test"><track kind="captions" /></video>
 	{/if}
 </div>
 <style lang="stylus">
