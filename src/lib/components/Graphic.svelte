@@ -18,7 +18,11 @@
 		preload: true,
 		sources: [
 			{
-				src: 'https://clientcenter-env-eba-uhva3sx9-us-east-1-elasticbeanstalk-com.s3.us-east-1.amazonaws.com/test-video/windows-google-search.mp4',
+				src: '/windows-google-search.m3u8',
+				type: 'application/x-mpegURL'
+			},
+			{
+				src: '/windows-google-search.mp4',
 				type: 'video/mp4'
 			}
 		]
