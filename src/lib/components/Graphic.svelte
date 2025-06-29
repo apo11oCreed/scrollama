@@ -57,13 +57,15 @@
 	transform translate3d(0, 0, 0)
 	z-index 0
 	position sticky
+	overflow hidden
 	
 .scroll__graphic
 	img,
-	video,
-	.video-test
-		width 100%
-		height auto
+	video
+		min-height 100%
+		min-width 100%
+		margin auto
+		object-fit cover
 		
 	
 </style>
