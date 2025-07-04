@@ -22,14 +22,4 @@ This project is an exploration of scrollytelling with the use of the Scrollama l
 * VideoJS
 
 ## Notes
-
-### The following files require changes:
-node_modules/sirv/build.mjs
-`import { parse } from '@polka/url';`
-Should be changed to:
-`import { parse } from '@polka/url/build.mjs';`
-
-node_modules/@polka/url/build.mjs
-`function parse(str) {`
-Should be changed to:
-`export function parse(str) {`
+If using Bun, as with any package manager, be sure to upgrade to the latest stable version.
