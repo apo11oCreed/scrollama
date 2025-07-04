@@ -10,10 +10,6 @@
 </div>
 <style lang="stylus">
 .step
-    // opacity 0
-    // transition all 1s ease-in-out
-    overflow-y hidden
-    width 100%
     h2,p 
         background #fff
         border-radius 5px

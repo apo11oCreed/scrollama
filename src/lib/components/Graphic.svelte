@@ -54,25 +54,18 @@
 .scroll__graphic
 	top 0
 	left 0
-	bottom auto
-	width 100%
-	-webkit-transform translate3d(0, 0, 0)
-	-moz-transform translate3d(0, 0, 0)
-	transform translate3d(0, 0, 0)
 	z-index 0
 	position sticky
 	overflow hidden
 	
 .scroll__graphic
 	img,
-	.video,
-		height 100%
-		width 100%
-	
-	img,
 	.video
+		min-height 100%
+		min-width 100%
 		object-fit cover
-		object-position center center
-		
-	
+		display block
+		position relative
+		left 50%
+		transform translateX(-50%)
 </style>
