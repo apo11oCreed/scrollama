@@ -2,6 +2,7 @@
     import { Graphic, Text } from '$lib';
     import * as d3 from 'd3';
     import { onMount } from 'svelte';
+    import data from '$lib/data/graphics.json';
     // using d3 for convenience, and storing a selected elements
     
     let scroller,
@@ -78,8 +79,8 @@
     		});
     		//.onStepEnter(handleStepEnter);
     		
-// 		_container.node().addEventListener('mouseenter', handleContainerEnter);
-// 		_container.node().addEventListener('mouseleave', handleContainerExit);
+        //_container.node().addEventListener('mouseenter', handleContainerEnter);
+        //_container.node().addEventListener('mouseleave', handleContainerExit);
     
     	// setup resize event
     	window.addEventListener('resize', handleResize);
@@ -87,14 +88,12 @@
     }
     
 </script>
+{#each data.graphics as item, i}
 <section class="scroll">
-    <Graphic id="1" type="video" />
+    <Graphic id={i} type={item.type} />
     <Text />
 </section>
-<section class="scroll">
-    <Graphic id="2" type="image" />
-    <Text />
-</section>
+{/each}
 <style lang="stylus">
 .scroll
     position relative

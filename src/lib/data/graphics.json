@@ -1,0 +1,36 @@
+{
+    "graphics":[
+        {
+            "type": "vid",
+            "a11y": "google search recording"
+        },
+        {
+            "type": "img",
+            "a11y": "lorem picsum"
+        },
+        {
+            "type": "vid",
+            "a11y": "google search recording"
+        },
+        {
+            "type": "img",
+            "a11y": "lorem picsum"
+        },
+        {
+            "type": "vid",
+            "a11y": "google search recording"
+        },
+        {
+            "type": "img",
+            "a11y": "lorem picsum"
+        },
+        {
+            "type": "vid",
+            "a11y": "google search recording"
+        },
+        {
+            "type": "img",
+            "a11y": "lorem picsum"
+        }
+    ]
+}

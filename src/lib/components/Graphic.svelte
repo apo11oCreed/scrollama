@@ -44,10 +44,10 @@
 	});
 </script>
 <div class='scroll__graphic'>
-	{#if type=="image"}
+	{#if type=="img"}
 	<img src="https://picsum.photos/id/{id}/1200/900" alt="test" />
 	{:else}
-	<video bind:this={videoElement} class="video-test"><track kind="captions" /></video>
+	<video bind:this={videoElement} class="video"><track kind="captions" /></video>
 	{/if}
 </div>
 <style lang="stylus">
@@ -65,11 +65,14 @@
 	
 .scroll__graphic
 	img,
-	video
-		min-height 100%
-		min-width 100%
-		margin auto
+	.video,
+		height 100%
+		width 100%
+	
+	img,
+	.video
 		object-fit cover
+		object-position center center
 		
 	
 </style>
