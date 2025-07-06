@@ -1,9 +1,12 @@
 <script lang="ts">
+    import type { PageProps } from './$types';
     import { Graphic, Text } from '$lib';
     import * as d3 from 'd3';
     import { onMount } from 'svelte';
-    import data from '$lib/data/graphics.json';
     // using d3 for convenience, and storing a selected elements
+    
+    let { data }: PageProps = $props();
+    const { graphicsData } = data;
     
     let scroller,
     _container,
@@ -88,7 +91,7 @@
     }
     
 </script>
-{#each data.graphics as item, i}
+{#each graphicsData.graphics as item, i}
 <section class="scroll">
     <Graphic id={i} type={item.type} />
     <Text />
