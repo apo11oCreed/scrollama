@@ -30,9 +30,7 @@
 	
 	onMount(()=>{
 		if(videoElement){
-			player = videojs(videoElement, videoOptions, ()=>{
-				console.log('player is ready');
-			});
+			player = videojs(videoElement, videoOptions);
 		}
 		
 		return ()=>{
