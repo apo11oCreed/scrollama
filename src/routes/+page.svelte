@@ -5,7 +5,7 @@
     import { onMount } from 'svelte';
     // using d3 for convenience, and storing a selected elements
     
-    let { data }: PageProps = $props();
+    export let data;
     const { graphicsData } = data;
     
     let scroller,
