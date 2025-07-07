@@ -2,6 +2,7 @@
 export { default as Graphic } from "./components/Graphic.svelte";
 export { default as Text } from "./components/Text.svelte";
 export { default as Step } from "./components/Step.svelte";
+export { default as Viz } from "./components/Viz.svelte";
 
 // Last module patch version validated against: 7.4.4
 

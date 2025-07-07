@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import videojs from 'video.js';
 	import 'video.js/dist/video-js.css';
+	import { Viz } from '$lib';
 	
 	let videoElement;
 	let player;
@@ -44,6 +45,8 @@
 <div class='scroll__graphic'>
 	{#if type=="img"}
 	<img src="https://picsum.photos/id/{id}/1200/900" alt="test" />
+	{:else if type=="viz"}
+	<Viz />
 	{:else}
 	<video bind:this={videoElement} class="video"><track kind="captions" /></video>
 	{/if}
