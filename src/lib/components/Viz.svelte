@@ -15,24 +15,27 @@
   const height = 400;
   const margins = {
     top: 16,
-    right: 16,
-    bottom: 48,
-    left: 48
+    right: 0,
+    bottom: 26,
+    left: 96
   }
   
   //https://observablehq.com/@d3/bar-chart/2
   
   onMount(()=>{
     
+    // Create the scales for the x and y axes
+    const maxTemp = d3.max(forecastData, d => d.temperature) ?? 0;
+    const xMax = Math.ceil(maxTemp / 10) * 10; // rounds up to nearest 10
     const x = d3.scaleLinear()
-      .domain([0,d3.max(forecastData, (d) => d.temperature)])
-      .range([height - margins.bottom, margins.top]);
-    
+      .domain([0,xMax])
+      .range([margins.left, width - margins.left - margins.right]);
+
     const y = d3.scaleBand()
-      .domain(d3.groupSort(forecastData, ([d]) => -d.temperature, (d) => d.period))
-      .range([margins.left, width - margins.right])
-      .padding(0.1);
-    
+      .domain(forecastData.map(d => d.period))
+      .range([margins.bottom, height - margins.top])
+      .padding(0.325);
+
     const svg = d3.create("svg")
       .attr("width",width)
       .attr("height",height)
@@ -42,29 +45,42 @@
     // Add a rect for each bar.
     svg.append("g")
         .attr("fill", "steelblue")
-      .selectAll()
-      .data(forecastData)
-      .join("rect")
+        .selectAll()
+        .data(forecastData)
+        .join("rect")
+        .attr("x", margins.left)
         .attr("y", (d) => y(d.period))
-        .attr("x", (d) => x(d.temperature))
-        .attr("height", (d) => x(0) - x(d.temperature))
-        .attr("width", y.bandwidth());
+        .attr("height", y.bandwidth())
+        .attr("width", (d) => x(d.temperature) - margins.left - margins.right)
+        .attr("transform", `translate(0, ${margins.top})`);
         
       svg.append("g")
-        .attr("transform", `translate(0,${height - margins.bottom}`)
-        .call(d3.axisBottom(x).tickSizeOuter(0));
-        
+        .attr("transform", `translate(0,${margins.top*2})`)
+        .call(d3.axisTop(x).tickSizeOuter(0));
+
       svg.append("g")
-        .attr("transform", `translate(${margins.left},0)`)
-        .call(d3.axisLeft(x).tickFormat((x)=>(x*100).toFixed()))
+        .attr("transform", `translate(${margins.left},${margins.top})`)
+        .call(d3.axisLeft(y))
         .call(g => g.select(".domain").remove())
-        .call(g => g.append("text"))
-          .attr("y", -margins.left)
-          .attr("x", 10)
-          .attr("fill", "currentColor")
-          .attr("text-anchor", "start")
-          .text("&uarr; Temperature (degrees)");
+        .call(g => g.selectAll(".tick line").remove())
+        .call(g => g.selectAll(".tick text")
+          .attr("x", -10)
+          .attr("dy", "0.32em"));
         
+      svg.append("g")
+        .attr("transform", `translate(${margins.left},20)`)
+        .call(g => g.select(".domain").remove())
+        .call(g => g.append("text")
+        .attr("x", 0)
+        .attr("y", -16) // Place above the axis
+        .attr("fill", "currentColor")
+        .attr("text-anchor", "start")
+        .attr("font-size", "12px")
+        .attr("font-weight", "bold")
+        .attr("dy", "0.32em")
+        .text("→ Temperature (degrees)")
+      )
+
       // Select the body element as the parent container
       const svgContainer = d3.select(container)
         .append(()=>{
