@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { PageProps } from './$types';
+    import { isVisualizationReady } from '$lib/store.js';
     import { Graphic, Text } from '$lib';
     import * as d3 from 'd3';
     import { onMount } from 'svelte';
@@ -52,6 +53,11 @@
         
         const stepData = _step.attr('data-step');
         _chart.html(`<p>${response.index + 1}</p>`);
+
+        if(response.index == 0){
+            //console.log('First step entered', $isVisualizationReady);
+        }
+
     }
     
     function handleContainerEnter(response) {
@@ -79,8 +85,8 @@
     			step: '.scroll__text .step', // the step elements
     			offset: 0.5, // set the trigger to be 1/2 way down screen
     			debug: false, // display the trigger offset for testing
-    		});
-    		//.onStepEnter(handleStepEnter);
+    		})
+            .onStepEnter(handleStepEnter);
     		
         //_container.node().addEventListener('mouseenter', handleContainerEnter);
         //_container.node().addEventListener('mouseleave', handleContainerExit);

@@ -50,14 +50,19 @@
         .join("rect")
         .attr("x", margins.left)
         .attr("y", (d) => y(d.period))
-        .attr("height", y.bandwidth())
-        .attr("width", (d) => x(d.temperature) - margins.left - margins.right)
-        .attr("transform", `translate(0, ${margins.top})`);
+        .attr("transform", `translate(0, ${margins.top})`)
+        .attr("height", y.bandwidth());
+        
+        // .transition()
+        // .duration(750)
+        // .ease(d3.easeCubicInOut)
+        // .attr("width", (d) => x(d.temperature) - margins.left - margins.right);
         
       svg.append("g")
-        .attr("transform", `translate(0,${margins.top*2})`)
+        .attr("transform", `translate(0,${margins.top*2 + 8})`)
         .call(d3.axisTop(x).tickSizeOuter(0));
 
+      // Add a label for the y-axis
       svg.append("g")
         .attr("transform", `translate(${margins.left},${margins.top})`)
         .call(d3.axisLeft(y))
@@ -66,9 +71,10 @@
         .call(g => g.selectAll(".tick text")
           .attr("x", -10)
           .attr("dy", "0.32em"));
-        
+      
+      // Add a label for the x-axis
       svg.append("g")
-        .attr("transform", `translate(${margins.left},20)`)
+        .attr("transform", `translate(${margins.left},22)`)
         .call(g => g.select(".domain").remove())
         .call(g => g.append("text")
         .attr("x", 0)
@@ -94,6 +100,8 @@
 <p>This is a placeholder for the data visualization component</p>
 <div bind:this={container}></div>
 <style lang="stylus">
-    
+svg
+  width 100%
+  height 100%
 </style>
 <!--https://www.weather.gov/documentation/services-web-api#/default/glossary-->
