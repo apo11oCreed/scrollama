@@ -55,7 +55,8 @@
         _chart.html(`<p>${response.index + 1}</p>`);
 
         if(response.index == 0){
-            //console.log('First step entered', $isVisualizationReady);
+          isVisualizationReady.update(curr=>({...curr, ready: true}));
+          console.log('first step entered');
         }
 
     }
@@ -86,7 +87,7 @@
     			offset: 0.5, // set the trigger to be 1/2 way down screen
     			debug: false, // display the trigger offset for testing
     		})
-            .onStepEnter(handleStepEnter);
+    		.onStepEnter(handleStepEnter);
     		
         //_container.node().addEventListener('mouseenter', handleContainerEnter);
         //_container.node().addEventListener('mouseleave', handleContainerExit);

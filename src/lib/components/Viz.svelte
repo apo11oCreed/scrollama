@@ -1,12 +1,42 @@
 <script lang="ts">
+  import { isVisualizationReady } from '$lib/store.js';
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
   import { get } from 'svelte/store';
   import * as d3 from 'd3';
   
+  //let {ready} = $isVisualizationReady;
+  
+  let svg;
+  let x;
+  let y;
+  let visualized = false;
+  
+  $: if($isVisualizationReady.ready && !visualized){
+    if(svg !== undefined && x !== undefined && y !== undefined){
+      
+        // Add a rect for each bar.
+      svg.append("g")
+        .attr("fill", "steelblue")
+        .selectAll()
+        .data(forecastData)
+        .join("rect")
+        .classed("bars",true)
+        .attr("x", margins.left)
+        .attr("y", (d) => y(d.period))
+        .attr("transform", `translate(0, ${margins.top})`)
+        .attr("height", y.bandwidth())
+        .transition()
+        .duration(750)
+        .ease(d3.easeCubicInOut)
+        .attr("width", (d) => x(d.temperature) - margins.left - margins.right);
+        
+      visualized = true;
+    }
+  }
+  
   const { data } = get(page); // get the page store synchronously
   const { forecastData } = data;
-  console.log('Forecast data for Boston: ', forecastData);
   
   let graph;
   let container;
@@ -27,36 +57,20 @@
     // Create the scales for the x and y axes
     const maxTemp = d3.max(forecastData, d => d.temperature) ?? 0;
     const xMax = Math.ceil(maxTemp / 10) * 10; // rounds up to nearest 10
-    const x = d3.scaleLinear()
+    x = d3.scaleLinear()
       .domain([0,xMax])
       .range([margins.left, width - margins.left - margins.right]);
 
-    const y = d3.scaleBand()
+    y = d3.scaleBand()
       .domain(forecastData.map(d => d.period))
       .range([margins.bottom, height - margins.top])
       .padding(0.325);
 
-    const svg = d3.create("svg")
+    svg = d3.create("svg")
       .attr("width",width)
       .attr("height",height)
       .attr("viewBox", [0, 0, width, height])
       .attr("style", "max-width: 100%; height: auto;");
-      
-    // Add a rect for each bar.
-    svg.append("g")
-        .attr("fill", "steelblue")
-        .selectAll()
-        .data(forecastData)
-        .join("rect")
-        .attr("x", margins.left)
-        .attr("y", (d) => y(d.period))
-        .attr("transform", `translate(0, ${margins.top})`)
-        .attr("height", y.bandwidth());
-        
-        // .transition()
-        // .duration(750)
-        // .ease(d3.easeCubicInOut)
-        // .attr("width", (d) => x(d.temperature) - margins.left - margins.right);
         
       svg.append("g")
         .attr("transform", `translate(0,${margins.top*2 + 8})`)

@@ -1,6 +1,6 @@
-import store from 'svelte/store';
+import { writable } from 'svelte/store';
 
-export const forecastData = store({
+export const forecastData = writable({
   data: [],
   setData(newData) {
     this.data = newData;
@@ -13,7 +13,7 @@ export const forecastData = store({
   }
 }); 
 
-export const isVisualizationReady = store({
+export const isVisualizationReady = writable({
   ready: false,
   setReady(status) {
     this.ready = status;
