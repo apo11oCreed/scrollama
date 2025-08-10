@@ -59,6 +59,7 @@
     "@aws-sdk/client-s3": "^3.828.0",
     "@aws-sdk/node-http-handler": "^3.374.0",
     "@aws-sdk/s3-request-presigner": "^3.828.0",
+    "@floating-ui/dom": "^1.7.3",
     "@types/d3": "^7.4.3",
     "d3": "^7.9.0",
     "intersection-observer": "^0.12.2",
